@@ -23,12 +23,19 @@ describe('helpers libary', () => {
             expect(helpers.areSameLength('a', 'aa')).toBe(false);
         });
 
-        it('should return false when any of the argument are not strings', () => {
+        it('should return null when any of the arguments are null', () => {
             expect(helpers.areSameLength('1', 1)).toBe(null);
-            expect(helpers.areSameLength('1', [])).toBe(null);
+            expect(helpers.areSameLength([], 'a')).toBe(null);
             expect(helpers.areSameLength('1', {})).toBe(null);
-            expect(helpers.areSameLength('1', NaN)).toBe(null);
-        });
+        })
+        
+        it('should return null when any of the arguments are undefined', () => {
+            expect(helpers.areSameLength()).toBe(undefined);
+            expect(helpers.areSameLength('a')).toBe(undefined);
+            expect(helpers.areSameLength('1', null)).toBe(undefined);
+            expect(helpers.areSameLength(undefined, NaN)).toBe(undefined);
+            expect(helpers.areSameLength('1', NaN)).toBe(undefined);
+        })
 
         it('the type of NaN should be NaN', () => {
             expect(typeof NaN).toBe('number');
